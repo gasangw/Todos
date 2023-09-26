@@ -1,9 +1,11 @@
 import React, {useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import uuid from 'react-uuid';
 
 function TextInput({onAddTodo}) {
     const [todo, setTodo] = useState({
+        id:uuid(),
         message: "",
         checked: false
     })
@@ -20,7 +22,7 @@ function TextInput({onAddTodo}) {
     const addATodo =()=> {
         if(todo.message === '')  return;
         onAddTodo(todo)
-        setTodo({message: "", checked: false})
+        setTodo({id:0, message: "", checked: false})
     } 
   return (
     <div className='flex justify-between rounded-full shadow-md w-3/5 mx-auto mt-8 px-6 items-center'>

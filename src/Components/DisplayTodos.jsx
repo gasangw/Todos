@@ -3,11 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 function DisplayTodos(props) {
-const { checked, message } = props.todo;
+const { id, checked, message } = props.todo;
 const [isChecked, setIsChecked] = useState(checked)
 
 const deleteATodo =(e) => {
-  props.deleteTodo(props.id)
+  props.deleteTodo(id)
 }
 
 const handleChecked =()=>{

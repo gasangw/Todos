@@ -3,7 +3,6 @@ import TodoHeading from "./Components/Heading"
 import TextInput from "./Components/TextInput"
 import TODOS from "./Components/Todos"
 import DisplayTodos from "./Components/DisplayTodos"
-import uuid from 'react-uuid';
 
 function App() {
 const [todos, setTodos] = useState([...TODOS])
@@ -14,7 +13,7 @@ const addTodo =(newTodo)=>{
 
 const deleteTodo =(ID)=> {
   setTodos((prevState) => {
-    return prevState.filter((todo, index) => todo.index !== ID)
+    return prevState.filter((todo) => todo.id !== ID)
   })
 }
 
@@ -24,7 +23,7 @@ const deleteTodo =(ID)=> {
       <TextInput  onAddTodo={addTodo} todo={TODOS}/>
       {todos.map((todo) => {
         return (
-          <div key={uuid()} className="mx-auto w-3/5 mt-4">
+          <div key={todo.id} className="mx-auto w-3/5 mt-4">
              <DisplayTodos todo={todo} deleteTodo={deleteTodo} />
           </div>
         )
