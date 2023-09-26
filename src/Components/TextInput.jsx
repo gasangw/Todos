@@ -1,15 +1,34 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
-function TextInput() {
+function TextInput({onAddTodo}) {
+    const [todo, setTodo] = useState({
+        message: "",
+        checked: false
+    })
+    const inputTextHandler =(e) => {
+       const { name, value} = e.target
+       setTodo((prevState) => {
+        return {
+            ...prevState,
+            [name]: value
+        }
+       })
+    }
+
+    const addATodo =()=> {
+        if(todo.message === '')  return;
+        onAddTodo(todo)
+        setTodo({message: "", checked: false})
+    } 
   return (
-    <div className='flex justify-between rounded-md shadow-md w-3/5 mx-auto mt-8 px-6 items-center'>
-        <input type='text' placeholder='Add todo...' className='py-4 px-3 w-4/5 outline-none placeholder-black'/>
-        <p className='bg-green-600 py-2 px-2 rounded-full cursor-pointer'>
-          <FontAwesomeIcon icon={faPlus}  className="text-[#f5f5f5]"/>
-        </p>
-    </div>
+    <div className='flex justify-between rounded-full shadow-md w-3/5 mx-auto mt-8 px-6 items-center'>
+    <input type='text' id={todo.id} onChange={inputTextHandler} placeholder='Add todo...' value={todo.message} name="message"  className='py-4 px-3 w-4/5 outline-none placeholder-black'/>
+    <p className='bg-green-600 py-2 px-4 rounded-full cursor-pointer' onClick={addATodo}>
+      <FontAwesomeIcon icon={faPlus}  className="text-[#f5f5f5]"/>
+    </p>
+   </div>
   )
 }
 
