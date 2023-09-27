@@ -1,11 +1,10 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import TodoHeading from "./Components/Heading"
 import TextInput from "./Components/TextInput"
-import TODOS from "./Components/Todos"
 import DisplayTodos from "./Components/DisplayTodos"
 
 function App() {
-const [todos, setTodos] = useState([...TODOS])
+const [todos, setTodos] = useState(()=> JSON.parse(localStorage.getItem("todos")) || [])
 
 const addTodo =(newTodo)=>{
   setTodos(prevTodo => [...prevTodo, newTodo])
@@ -17,10 +16,14 @@ const deleteTodo =(ID)=> {
   })
 }
 
+useEffect(()=> {
+  localStorage.setItem("todos",JSON.stringify(todos))
+},[todos])
+
   return (
     <div>
       <TodoHeading />
-      <TextInput  onAddTodo={addTodo} todo={TODOS}/>
+      <TextInput  onAddTodo={addTodo} todo={todos}/>
       {todos.map((todo) => {
         return (
           <div key={todo.id} className="mx-auto w-3/5 mt-4">
