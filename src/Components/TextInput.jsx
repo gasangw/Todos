@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import Confetti from 'react-confetti'
 import uuid from "react-uuid";
 
 function TextInput({ onAddTodo }) {
   const [error, setError] = useState(false);
+  const [congratulationIcons, setCongratulationIcons] = useState(false)
   const [todo, setTodo] = useState({
     id: uuid(),
     message: "",
@@ -19,16 +21,19 @@ function TextInput({ onAddTodo }) {
       };
     });
     setError(false);
+    setCongratulationIcons(false)
   };
 
   const addATodo = () => {
     if (todo.message === "") {
       setError(true);
+      setCongratulationIcons(false)
       return;
     }
 
     onAddTodo(todo);
     setTodo({ id: uuid(), message: "", checked: false });
+    setCongratulationIcons(true)
   };
   return (
     <>
@@ -37,6 +42,7 @@ function TextInput({ onAddTodo }) {
           The Input can't be empty, Kindly fill in something...
         </p>
       )}
+      {congratulationIcons && <Confetti style={{width:'80%', height:'100%'}}  />}
       <div className="flex justify-between rounded-full shadow-md w-3/5 mx-auto mt-8 px-6 items-center">
         <input type="text" id={todo.id} onChange={inputTextHandler} placeholder="Add todo..."
           value={todo.message}
