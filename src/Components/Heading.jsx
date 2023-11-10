@@ -1,5 +1,3 @@
-import React, {useSta} from 'react'
-
 function TodoHeading() {
   return (
     <div>
