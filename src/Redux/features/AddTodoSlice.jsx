@@ -14,7 +14,11 @@ const addTodoSlice = createSlice({
            return state
         },
         addTodo: (state, action) => {
-           state.push(action.action)
+         state.push(action.payload)
+        },
+        deleteTodo: (state, action) => {
+          const { id } = action.payload
+          return state.filter(todo => todo.id !== id)
         }
     }
 })

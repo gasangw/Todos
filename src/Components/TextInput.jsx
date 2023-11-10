@@ -2,9 +2,11 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import uuid from "react-uuid";
-import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { addTodo } from "../Redux/features/AddTodoSlice";
 
-function TextInput({ onAddTodo }) {
+function TextInput() {
+  const dispatch = useDispatch();
   const [error, setError] = useState(false);
   const [todo, setTodo] = useState({
     id: uuid(),
@@ -22,13 +24,13 @@ function TextInput({ onAddTodo }) {
     setError(false);
   };
 
-  const addATodo = () => {
+  const addTodoHandler = () => {
     if (todo.message === "") {
       setError(true);
       return;
     }
 
-    onAddTodo(todo);
+    dispatch(addTodo({id: todo.id, message: todo.message, checked: todo.checked}))
     setTodo({ id: uuid(), message: "", checked: false });
   };
   return (
@@ -46,7 +48,7 @@ function TextInput({ onAddTodo }) {
         />
         <p
           className="bg-green-600 py-2 px-4 rounded-full cursor-pointer"
-          onClick={addATodo}
+          onClick={addTodoHandler}
         >
           <FontAwesomeIcon icon={faPlus} className="text-[#f5f5f5]" />
         </p>
@@ -54,9 +56,5 @@ function TextInput({ onAddTodo }) {
     </>
   );
 }
-
-TextInput.propTypes = {
-  onAddTodo: PropTypes.func.isRequired,
-};
 
 export default TextInput;
