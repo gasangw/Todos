@@ -13,7 +13,7 @@ return (
       {todos.map((todo) => {
         return (
           <div key={todo.id} className="mx-auto w-3/5 mt-4">
-             <DisplayTodos todo={todo.message} />
+             <DisplayTodos todo={todo.message} id={todo.id} />
           </div>
         )
       })}
