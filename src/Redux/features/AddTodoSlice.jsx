@@ -1,9 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = [
-  { id: 1, message: "great", checked: false },
-  { id: 2, message: "Read Redux", checked: false },
-  { id: 3, message: "Read Anki", checked: false },
+  { id: 1, message: "Read Redux", checked: false },
 ];
 
 const addTodoSlice = createSlice({

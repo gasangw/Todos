@@ -1,7 +1,7 @@
 import TodoHeading from "./Components/Heading"
 import TextInput from "./Components/TextInput"
 import DisplayTodos from "./Components/DisplayTodos"
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux"
 
 function App() {
   const todos = useSelector(state => state.todos)
