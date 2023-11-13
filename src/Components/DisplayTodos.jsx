@@ -10,7 +10,6 @@ import { useState } from "react";
 function DisplayTodos(props) {
   const dispatch = useDispatch();
   const [isChecked, setIsChecked] = useState(props.checked);
-  console.log(isChecked);
   const checkBoxHandler = () => {
     setIsChecked(!isChecked);
   };
