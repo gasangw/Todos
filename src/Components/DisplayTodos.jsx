@@ -10,7 +10,6 @@ import { useState } from "react";
 function DisplayTodos(props) {
   const dispatch = useDispatch();
   const [isChecked, setIsChecked] = useState(props.checked);
-  console.log(isChecked);
   const checkBoxHandler = () => {
     setIsChecked(!isChecked);
   };
@@ -39,6 +38,7 @@ function DisplayTodos(props) {
             {props.todo}
           </p>
         </div>
+        <Link to={`/edit/${props.id}`}>Edit</Link>
         <div
           className="bg-gray-200 py-3 px-4 rounded-full cursor-pointer"
           onClick={() => deleteTodoHandler(props.id)}

@@ -25,11 +25,6 @@ function TextInput() {
   };
 
   const addTodoHandler = () => {
-    if (todo.message === "") {
-      toast.error('The Input can not be empty, Kindly fill in something...')
-      return;
-    }
-
     dispatch(addTodo({id: todo.id, message: todo.message, checked: todo.checked}))
     toast.success('Todo Added Successfully')
     setTodo({ id: uuid(), message: "", checked: false });
