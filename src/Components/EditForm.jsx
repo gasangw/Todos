@@ -1,5 +1,3 @@
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useParams, useNavigate } from "react-router-dom";
@@ -45,6 +43,7 @@ export default function EditForm() {
           placeholder="Add todo..."
           value={message.message}
           name="message"
+          required
           className="py-4 px-3 w-4/5 outline-none placeholder-black"
         />
         <p
@@ -54,7 +53,6 @@ export default function EditForm() {
           <FontAwesomeIcon icon={faPlus} className="text-[#f5f5f5]" />
         </p>
       </div>
-      <ToastContainer position="top-center" autoClose={2000} />
     </>
   );
 }

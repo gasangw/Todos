@@ -4,8 +4,8 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import uuid from "react-uuid";
 import { useDispatch } from "react-redux";
 import { addTodo } from "../Redux/features/AddTodoSlice";
-  import { ToastContainer, toast } from "react-toastify";
-  import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function TextInput() {
   const dispatch = useDispatch();
@@ -24,6 +24,7 @@ function TextInput() {
   };
 
   const addTodoHandler = () => {
+    if(todo.message.trim() === "") return toast.error('Please enter a todo')
     dispatch(addTodo({id: uuid(), message: todo.message, checked: todo.checked}))
     toast.success('Todo Added Successfully')
     setTodo({ id: uuid(), message: "", checked: false });
