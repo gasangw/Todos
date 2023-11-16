@@ -1,5 +1,6 @@
 import TextInput from "./TextInput";
 import DisplayTodos from "./DisplayTodos";
+import TodoHeading from "./Heading";
 import { useSelector } from "react-redux";
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
 
   return (
     <div>
+      <TodoHeading />
       <TextInput todo={todos} />
       {todos.map((todo) => {
         return (
