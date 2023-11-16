@@ -3,7 +3,7 @@ import {  Routes, Route } from "react-router-dom"
 import GetTodos from "./Components/GetTodos"
 import EditForm from "./Components/EditForm"
 
-function App() {
+export default function App() {
 return (
     <div>
        <Routes>
@@ -16,5 +16,3 @@ return (
     </div>
   )
 }
-
-export default App

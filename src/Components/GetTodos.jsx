@@ -3,7 +3,7 @@ import DisplayTodos from "./DisplayTodos";
 import TodoHeading from "./Heading";
 import { useSelector } from "react-redux";
 
-function App() {
+export default function GetTodos() {
   const todos = useSelector((state) => state.todos);
 
   return (
@@ -25,4 +25,3 @@ function App() {
   );
 }
 
-export default App;
