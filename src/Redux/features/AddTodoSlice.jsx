@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import uuid from "react-uuid";
 
-const initialState = [
-  { id: 1, message: "Read Redux", checked: false },
-];
+const initialState = [];
 
 const addTodoSlice = createSlice({
     name: "todos",
@@ -12,7 +11,7 @@ const addTodoSlice = createSlice({
            return state
         },
         addTodo: (state, action) => {
-         state.push(action.payload)
+         state.push({ id: uuid(), message: action.payload.message, checked: action.payload.checked });
         },
         deleteTodo: (state, action) => {
           const { id } = action.payload

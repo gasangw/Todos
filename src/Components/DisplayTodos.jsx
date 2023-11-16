@@ -6,7 +6,7 @@ import { deleteTodo } from "../Redux/features/AddTodoSlice";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 
 function DisplayTodos(props) {
   const dispatch = useDispatch();
@@ -39,7 +39,6 @@ function DisplayTodos(props) {
             {props.todo}
           </p>
         </div>
-        <Link to={`/edit/${props.id}`}>Edit</Link>
         <div
           className="bg-gray-200 py-3 px-4 rounded-full cursor-pointer"
           onClick={() => deleteTodoHandler(props.id)}

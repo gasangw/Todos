@@ -10,7 +10,6 @@ import { addTodo } from "../Redux/features/AddTodoSlice";
 function TextInput() {
   const dispatch = useDispatch();
   const [todo, setTodo] = useState({
-    id: uuid(),
     message: "",
     checked: false,
   });
@@ -25,7 +24,7 @@ function TextInput() {
   };
 
   const addTodoHandler = () => {
-    dispatch(addTodo({id: todo.id, message: todo.message, checked: todo.checked}))
+    dispatch(addTodo({id: uuid(), message: todo.message, checked: todo.checked}))
     toast.success('Todo Added Successfully')
     setTodo({ id: uuid(), message: "", checked: false });
   };
