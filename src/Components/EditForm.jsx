@@ -2,33 +2,38 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState } from "react";
+import { useDispatch } from "react-redux"; 
+import { editTodo } from "../Redux/features/AddTodoSlice";  
 
 export default function EditForm() {
   const { id } = useParams();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const todo = useSelector((state) =>
     state.todos.find((todo) => todo.id === id)
   );
-  const [message, setMessage] = useState(todo.message);
+  const [message, setMessage] = useState(todo);
 
   const editHandler = (e) => {
-    setMessage(e.target.value);
+    setMessage(prevState => {
+      return {
+        ...prevState,
+        [e.target.name]: e.target.value
+      }
+    });
   };
 
   const addEditedTodoHandler = () => {
-
+     dispatch(editTodo({ id: id, message: message.message, checked: message.checked}));
+      navigate('/')
   }
 
   return (
     <>
       <div>
-        <div className="bg-green-600 w-fit p-2 rounded-2xl m-10">
-          <Link to="/" className="underline font-semibold text-white">
-            Back Home
-          </Link>
-        </div>
         <h1 className="text-8xl font-semibold text-center mt-14 text-gray-300">
           Edit todo
         </h1>
@@ -38,7 +43,7 @@ export default function EditForm() {
           type="text"
           onChange={editHandler}
           placeholder="Add todo..."
-          value={message}
+          value={message.message}
           name="message"
           className="py-4 px-3 w-4/5 outline-none placeholder-black"
         />

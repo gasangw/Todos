@@ -13,6 +13,16 @@ const addTodoSlice = createSlice({
         addTodo: (state, action) => {
          state.push({ id: uuid(), message: action.payload.message, checked: action.payload.checked });
         },
+        editTodo: (state, action) => {
+          const { id, message, checked } = action.payload
+          const existingTodo = state.find(todo => todo.id === id)
+          if(existingTodo){
+            existingTodo.message = message
+            existingTodo.checked = checked
+          
+          }
+          return state
+        },
         deleteTodo: (state, action) => {
           const { id } = action.payload
           return state.filter(todo => todo.id !== id)
@@ -20,5 +30,5 @@ const addTodoSlice = createSlice({
     }
 })
 
-export const { addTodo, deleteTodo } = addTodoSlice.actions
+export const { addTodo, editTodo, deleteTodo } = addTodoSlice.actions
 export default addTodoSlice.reducer
